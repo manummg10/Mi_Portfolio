@@ -1,0 +1,1430 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+
+}
+
+/* Root variables for colors */
+/* This section defines the color variables used throughout the CSS */
+/* 🌙 Tema oscuro (por defecto) */
+:root {
+    --bg-color: #0d1117;
+    /* fondo principal oscuro (más profundo) */
+    --second-bg-color: #161b22;
+    /* fondo secundario (secciones) */
+    --text-color: #e6edf3;
+    /* texto claro sin tanto blanco puro */
+    --main-color: #4f8cff;
+    /* azul ligeramente más vibrante pero suave */
+    --accent-color: #2dd4bf;
+    /* verde-agua suave para destacar */
+}
+
+/* ☀️ Tema claro */
+body.light-theme {
+    --bg-color: #b2b4b6;
+    /* fondo claro muy suave */
+    --second-bg-color: #e3eaf0;
+    /* fondo secundario claro */
+    --text-color: #1a1a1a;
+    /* texto oscuro neutro */
+    --main-color: #2563eb;
+    /* azul consistente con modo oscuro */
+    --accent-color: #0f172a;
+    /* casi negro para botones o detalles */
+}
+
+/* Global styles */
+/* This section sets the base styles for the HTML and body elements */
+html {
+    font-size: 60%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--second-bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/*Modo Darck*/
+/* Botón contenedor */
+.dark-mode {
+    display: flex;
+    padding: 0.2rem;
+    border: 0.3rem solid var(--bg-color);
+    background-color: rgb(147, 145, 145);
+    color: #0D0D0D;
+    border-radius: 999px;
+    width: 9rem;
+    height: 4rem;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+    margin: 9rem 80rem;
+    position: absolute;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+/* Cambio de fondo del botón en modo claro */
+body.light-theme .dark-mode {
+    background-color: #fff;
+}
+
+
+/* Círculo que se desliza */
+.circle {
+    width: 40%;
+    height: 90%;
+    border-radius: 80%;
+    background-color: white;
+    position: relative;
+    transition: transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+
+}
+
+/* Movimiento del círculo al cambiar tema */
+body.light-theme .circle {
+    transform: translateX(140%);
+    background-color: #2A2A2C;
+}
+
+
+/* Iconos dentro del círculo */
+.circle i {
+    position: absolute;
+    font-size: 2rem;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Luna - visible solo en dark */
+#moon-icon {
+    transform: translateY(0%);
+    opacity: 1;
+    color: black;
+}
+
+body.light-theme #moon-icon {
+    transform: translateY(-150%);
+    opacity: 0;
+}
+
+/* Sol - visible solo en light */
+#sun-icon {
+    transform: translateY(150%);
+    opacity: 0;
+    color: #fcde5b;
+}
+
+body.light-theme #sun-icon {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+/* Header styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 4rem 12% 4rem;
+    background: rgb(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: auto;
+    z-index: 5;
+}
+
+/* Navbar styles */
+.logo {
+    font-size: 3rem;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.logo span {
+    text-shadow: 0 0 25px var(--main-color);
+}
+
+/* Enlaces del navbar */
+.navbar a {
+    font-size: 1.8rem;
+    /* Tamaño de fuente de los enlaces */
+    color: var(--text-color);
+    /* Color del texto */
+    margin-left: 4rem;
+    /* Espacio a la izquierda entre enlaces */
+    font-weight: 500;
+    /* Grosor del texto */
+    transition: 0.3s ease;
+    /* Transición suave para hover/active */
+    border-bottom: 3px solid transparent;
+    /* Línea inferior invisible por defecto */
+}
+
+/* Efecto al pasar el mouse o cuando está activo */
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+    /* Cambia el color del texto */
+    border-bottom: 3px solid var(--main-color);
+    /* Subraya el enlace */
+}
+
+/* Icono del menú hamburguesa (oculto por defecto) */
+.bx-burger-alt {
+    display: none;
+    /* No se muestra en escritorio */
+    font-size: 3.6rem;
+    /* Tamaño del icono (hay un espacio extra, debería ser 3.6rem) */
+    color: var(--main-color);
+    /* Color del icono */
+}
+
+.navbar.active {
+    display: flex;
+}
+
+
+/* Sección general */
+section {
+    padding: 10rem 20rem;
+    /* Espaciado superior, laterales e inferior */
+    min-height: 100vh;
+    /* Altura mínima igual al alto de la ventana */
+}
+
+/* Sección principal "about" */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    gap: 15rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+
+/* Contenido de la sección "about" */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    /* Apila los elementos en columna */
+    align-items: baseline;
+    /* Alinea los elementos al inicio del eje transversal */
+    justify-content: center;
+    /* Centra verticalmente el contenido */
+    margin-top: 5rem;
+    padding: auto;
+
+}
+
+/* Estilo del logo dentro de "about-content" */
+span {
+    color: var(--main-color);
+}
+
+.logo span {
+    color: var(--main-color);
+}
+
+.about-content h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4rem;
+}
+
+.about-content h2 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+.about-img img {
+    border-radius: 50%;
+
+}
+
+.about-img img {
+    position: relative;
+    top: 10rem;
+    width: 500px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px var(--main-color);
+    transform: scale(0.8)translateY(-100px);
+    /*tamaño de la foto*/
+
+}
+
+.about-img img:hover {
+    transform: scale(0.9)translateY(-100px);
+    box-shadow: 0 0 50px var(--main-color);
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.about-content p {
+    font-size: 1.5rem;
+    margin-top: 500;
+    line-height: 1.8;
+    max-width: 1000px;
+}
+
+/* Iconos de redes sociales en la sección "about" */
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    background: transparent;
+    border: 2px solid var(--main-color);
+    font-size: 2.5rem;
+    border-radius: 50%;
+    color: var(--main-color);
+    margin: 3rem 1.5rem 3rem 0;
+    transition: 0.13s ease-in-out;
+}
+
+.social-icons a:hover {
+    color: var(--text-color);
+    transform: scale(1.3)translateY(-5px);
+    box-shadow: 0 0 25px var(--main-color);
+    background-color: var(--main-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--main-color);
+    box-shadow: 0 0 25px var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: rgb(255, 255, 255);
+    border: 2px solid transparent;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.13s ease-in-out;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px var(--main-color);
+    color: black;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-group a:nth-of-type(1):hover {
+    transform: scale(1)translateY(-10px);
+    background: var(--main-color);
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.btn-group a:nth-of-type(2):hover {
+    transform: scale(1)translateY(-10px);
+    background: var(--main-color);
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.text-animation {
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+}
+
+.text-animation span {
+    position: relative;
+}
+
+.text-animation span::after {
+    content: "";
+    color: var(--main-color);
+    animation: words 20s infinite;
+}
+
+.text-animation span::before {
+    content: "";
+    background-color: var(--second-bg-color);
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-left: 3px solid var(--second-bg-color);
+    right: -8px;
+    animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+    to {
+        border-left: 5px solid var(--text-color);
+    }
+}
+
+@keyframes words {
+
+    0%,
+    100% {
+        content: "Full Stack en formación";
+    }
+}
+
+@keyframes typing {
+
+    10%,
+    15%,
+    30%,
+    35%,
+    50%,
+    55%,
+    70%,
+    75%,
+    90%,
+    95% {
+        width: 0;
+    }
+
+    5%,
+    20%,
+    25%,
+    40%,
+    45%,
+    60%,
+    65%,
+    80%,
+    85% {
+        width: calc(100% + 8px);
+    }
+}
+
+/*barra de scroll derecha*/
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--second-bg-color);
+    width: 50px;
+}
+
+/* Tecnologías*/
+/* Sección general */
+.Tecnologías {
+    background-color: var(--bg-color);
+    padding: 4rem 4rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Título principal */
+.Tecnologías .heading {
+    font-size: 5rem;
+    margin-bottom: 4rem;
+    color: var(--text-color);
+}
+
+/* Contenedor general de tecnologías y herramientas */
+.tech-icons-set {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+}
+
+/* Grupo de íconos con título */
+.tech-group {
+    text-align: left;
+    max-width: 1000px;
+    width: 100%;
+    margin: 3rem;
+}
+
+/* Título pequeño */
+.tech-group h3 {
+    font-size: 2rem;
+    color: rgb(103, 100, 100);
+    margin: 2rem 30rem;
+    ;
+    text-transform: uppercase;
+}
+
+/* Fila horizontal de íconos */
+.tech-icons-row {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    margin: 2rem 30rem;
+    text-align: center;
+    padding: 1rem 1rem;
+}
+
+.tech-item span {
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.2rem;
+}
+
+
+/* Íconos */
+.tech-icons-row i {
+    font-size: 4rem;
+    transition: transform 0.3s ease;
+
+}
+
+.tech-icons-row i:hover {
+    color: gray;
+}
+
+/* PROYECTOS*/
+.Proyectos {
+    background: var(--second-bg-color);
+}
+
+.Proyectos-box {
+    display: flex;
+    background-size: cover;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Proyectos .heading {
+    margin-bottom: 6rem;
+    margin: 4rem;
+}
+
+.Proyectos-box img {
+    width: 30rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 5px solid rgba(238, 238, 238, 0.2);
+    border-radius: 2rem;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    justify-items: center;
+    width: 100%;
+    padding: 2rem;
+}
+
+.Proyectos-item {
+    min-height: 40rem;
+    max-width: 40rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 3px solid rgba(238, 238, 238, 0.2);
+    border-radius: 2rem;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    color: white;
+    transition: 0.4s ease-in-out;
+}
+
+.Proyectos-item:hover {
+    border: 3px solid var(--main-color);
+    transform: translateY(-10px)scale(1.03);
+    box-shadow: 0 0 50px var(--main-color);
+
+}
+
+.Proyectos-item h2 {
+    font-size: 2.5rem;
+}
+
+.Proyectos-item p {
+    font-size: 1.3rem;
+}
+
+.tech-icons {
+    margin: 1rem;
+    font-size: 4rem;
+}
+
+/*Educacion*/
+
+.heading {
+    font-size: 6rem;
+    text-align: center;
+    margin: 10rem;
+}
+
+.education {
+    position: relative;
+    padding: 4rem;
+    background: var(--bg-color);
+
+}
+
+/*Linea*/
+.education::before {
+    content: "";
+    position: absolute;
+    top: 30rem;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: var(--main-color);
+    transform: translateX(-50%);
+}
+
+/*tamaño de las cajas de educacion*/
+.timeline-items {
+    display: flex;
+    max-width: 50rem;
+    margin: auto;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.timeline-items::before {
+    content: "";
+    width: 1000%;
+    top: 0;
+    /* Ajusta este valor para acortar la línea desde la parte superior */
+    bottom: 0;
+    /* Ajusta este valor para acortar la línea desde la parte inferior */
+    left: 50%;
+    width: 4px;
+    /*background-color: var(--main-color);*/
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin-bottom: 40px;
+    position: relative;
+    width: 100%;
+
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-item:last-child(odd) {
+    padding-right: calc(50% + 30px);
+    text-align: right;
+}
+
+.timeline-item::nth-child(even) {
+    padding-left: calc(50% + 30px);
+}
+
+/* Pontos de linea*/
+.timeline-dot {
+    background-color: var(--main-color);
+    box-shadow: 0 0 15px var(--main-color);
+    left: 24.4rem;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 100%;
+    top: 1.8rem;
+    position: absolute;
+}
+
+.timeline-date {
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    margin: 6px 0 15px;
+}
+
+.timeline-content {
+    background: var(--second-bg-color);
+    border: 3px solid var(--main-color);
+    padding: 30px 50px;
+    border-radius: 4rem;
+    box-shadow: 0 0 10px var(--main-color);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.timeline-content:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--main-color);
+}
+
+.timeline-content h3 {
+    font-size: 20px;
+    color: white;
+    margin: 0 0 10px;
+    font-weight: 500;
+}
+
+.timeline-content p {
+    font-size: 16px;
+    color: white;
+    font-weight: 300;
+    line-height: 22px;
+}
+
+.show-cert-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-cert-btn:hover {
+    background-color: var(--bg-color);
+
+}
+
+.certifi-educacion {
+    margin-top: 1rem;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.img-educacion {
+    max-width: 40rem;
+    text-align: center;
+    display: flex;
+    border-radius: 4rem;
+}
+
+
+/*Cursos | Certificaciones*/
+.certifi {
+    background: var(--second-bg-color);
+    padding: 5rem 2rem;
+}
+
+.certifi h2 {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 4rem;
+    margin: 10rem;
+}
+
+.certifi-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.certifi-card {
+    background: var(--bg-color);
+    border: 1px solid var(--main-color);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    color: var(--text-color);
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certifi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.certifi-card h3 {
+    color: var(--main-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.certifi-card p {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    text-align: justify;
+}
+
+.certifi-img {
+    max-width: 100%;
+    cursor: pointer;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.certifi-img:hover {
+    transform: scale(1.03);
+}
+
+/*el efecto lightbox*/
+.img-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    display: block;
+    margin: 5% auto;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 1rem;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+
+/*footer*/
+.footer {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.footer-content h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--main-color);
+}
+
+.footer-content p {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.footer-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--bg-color);
+    border-radius: 5rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    font-size: 1.6rem;
+}
+
+.footer-btn:hover {
+    background: var(--main-color);
+    color: white;
+}
+
+.footer .social-icons {
+    margin: 2.5rem 0;
+}
+
+.footer .social-icons a {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin: 0 1rem;
+}
+
+.footer .social-icons a:hover {
+    color: black;
+    transform: scale(1.3)translateY(-5px);
+    box-shadow: 0 0 25px var(--main-color);
+    background-color: var(--main-color);
+}
+
+.footer-copy {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    color: var(--text-color);
+}
+
+/* ========= MEDIA QUERIES RESPONSIVAS OPTIMIZADAS ========= */
+
+/* Dispositivos medianos (hasta 1200px) */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+
+    .navbar {
+        padding-left: 10rem;
+        margin:  -1rem;
+        
+    }
+
+     .logo {
+    display: inline;
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: relative;
+    text-align: 1rem;
+    
+}
+
+    .dark-mode {
+        margin: 1rem 70rem;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 8rem;
+        height: 4rem;
+    }
+
+    .circle {
+        width: 40%;
+        height: 90%;
+        border-radius: 80%;
+        background-color: white;
+        position: relative;
+        transition: transform 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0.5px;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+
+    }
+
+    .about-content h1 {
+    padding: 4rem;
+}
+
+    section {
+        padding: 6rem 4rem;
+    }
+
+    .about {
+        flex-direction: column;
+        gap: 8rem;
+    }
+
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 27rem;
+    }
+
+    .certifi-card {
+        width: 95%;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    .tech-group h3,
+    .tech-icons-row {
+        margin: 2rem 8rem;
+    }
+}
+
+/* Tablets y pantallas medianas (hasta 992px) */
+@media (max-width: 992px) {
+    html {
+        font-size: 50%;
+    }
+
+    section {
+        padding: 6rem 4rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+        color: var(--text-color);
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.3s ease;
+        position: relative;
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 27rem;
+    }
+
+    .header {
+        padding: 3rem 5%;
+    }
+
+    .dark-mode {
+        margin: 1rem 70rem;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 8rem;
+        height: 4rem;
+    }
+
+    .circle {
+        width: 40%;
+        height: 90%;
+        border-radius: 80%;
+        background-color: white;
+        position: relative;
+        transition: transform 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0.5px;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+
+    }
+
+    .about {
+        flex-direction: column;
+        text-align: center;
+        gap: 5rem;
+    }
+
+    .about-img img {
+        top: 0;
+        width: 350px;
+        transform: scale(1) translateY(0);
+    }
+
+    .about-content {
+        align-items: center;
+    }
+
+    .certifi-card {
+        width: 95%;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    .tech-group h3,
+    .tech-icons-row {
+        margin: 2rem 2rem;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-dot {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Teléfonos grandes y pequeños (hasta 768px) */
+@media (max-width: 768px) {
+    html {
+        font-size: 45%;
+    }
+
+
+    section {
+        padding: 5rem 3rem;
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 27rem;
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background: var(--bg-color);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 2rem 0;
+        z-index: 10;
+    }
+
+    .navbar a {
+        margin: 2rem 0;
+    }
+
+    .bx-burger-alt {
+        display: block;
+        cursor: pointer;
+    }
+
+    .about-img img {
+        width: 280px;
+    }
+
+    .tech-group h3,
+    .tech-icons-row {
+        margin: 1rem;
+    }
+
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .heading {
+        font-size: 4rem;
+        margin: 5rem 0;
+    }
+
+    .certifi-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .certifi-card {
+        width: 100%;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    .timeline-content {
+        padding: 2rem;
+    }
+
+    .timeline-dot {
+        left: 50%;
+        width: 1.6rem;
+        height: 1.6rem;
+        margin: 0.9rem 0.1rem;
+        transform: translateX(-50%);
+    }
+
+    .footer-content h3 {
+        font-size: 2rem;
+    }
+
+    .dark-mode {
+        margin: 2rem auto;
+        width: 8rem;
+        height: 4rem;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px),
+(min-resolution: 1.25dppx) {
+    .text-animation {
+        display: flex;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+
+
+/* iPhone 16 Pro Max y similares (hasta 430px) */
+@media (max-width: 430px) {
+    html {
+        font-size: 45%;
+        padding: 1rem;
+    }
+
+    section {
+        padding: 4rem 2rem;
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 7rem;
+    }
+
+    .about-img img {
+        width: 230px;
+    }
+
+    .about-content h1 {
+        font-size: 3.8rem;
+    }
+
+    .about-content p {
+        font-size: 2rem;
+        text-align: justify;
+    }
+
+    .tech-group h3 {
+        margin: 1rem 0;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .tech-icons-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1rem;
+        justify-items: center;
+        margin: 1rem 0;
+    }
+
+    .img-educacion {
+        max-width: 31rem;
+        text-align: center;
+        display: flex;
+        border-radius: 4rem;
+        margin: 2rem auto;
+    }
+}
+
+/* iPhone 16 Pro, 15 Pro, 14, etc. (hasta 393px) */
+@media (max-width: 393px) {
+    html {
+        font-size: 42%;
+    }
+
+    .circle {
+        width: 40%;
+        height: 90%;
+        border-radius: 80%;
+        background-color: white;
+        position: relative;
+        transition: transform 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2px;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 3rem;
+    }
+
+    .about-img img {
+        width: 210px;
+    }
+
+    .about-content p {
+        font-size: 1.9rem;
+        text-align: left;
+        padding: 1.5rem;
+    }
+
+    .img-educacion {
+        max-width: 28rem;
+        margin: 2rem auto;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .tech-icons-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Móviles muy pequeños (hasta 320px) */
+@media (max-width: 320px) {
+    html {
+        font-size: 40%;
+        padding: 1rem 2rem;
+    }
+
+    .circle {
+        width: 40%;
+        height: 90%;
+        border-radius: 80%;
+        background-color: white;
+        position: relative;
+        transition: transform 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2px;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .about-content p {
+        font-size: 1.9rem;
+        text-align: left;
+        padding: 1.5rem;
+        justify-content: center;
+    }
+
+    .about-img img {
+        width: 180px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .img-educacion {
+        max-width: 25rem;
+        text-align: center;
+        display: flex;
+        border-radius: 4rem;
+    }
+
+    .tech-icons-row i {
+        font-size: 3.5rem;
+    }
+
+    .footer-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .footer-btn {
+        font-size: 1.4rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .dark-mode {
+        width: 8rem;
+        height: 4rem;
+    }
+}
+
+/* Móviles muy pequeños (hasta 200px) */
+@media (max-width: 200px) {
+    html {
+        font-size: 40%;
+        padding: 1rem 2rem;
+        justify-content: center;
+    }
+
+    .circle {
+        width: 40%;
+        height: 90%;
+        border-radius: 80%;
+        background-color: white;
+        position: relative;
+        transition: transform 0.5s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -25px;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5));
+
+    }
+
+    .certifi-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 0rem 0rem;
+    }
+
+    .about-content p {
+        font-size: 1.9rem;
+        text-align: left;
+        padding: 1.5rem;
+        justify-content: center;
+    }
+
+    .about-img img {
+        width: 180px;
+        justify-content: center;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img-educacion {
+        max-width: 25rem;
+        text-align: center;
+        display: flex;
+        border-radius: 4rem;
+        justify-content: center;
+    }
+
+    .tech-icons-row i {
+        font-size: 3.5rem;
+    }
+
+    .footer-content h3 {
+        font-size: 1.8rem;
+    }
+
+    .footer-btn {
+        font-size: 1.4rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .dark-mode {
+        width: 8rem;
+        height: 4rem;
+        justify-content: center;
+    }
+}
