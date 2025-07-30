@@ -1,1 +1,1 @@
-Mi-Portfolio Este es mi portfolio personal como desarrollador web, donde muestro algunos de mis proyectos, habilidades y tecnologías con las que trabajo. El sitio está diseñado con un enfoque moderno y minimalista, optimizado para una navegación fluida y responsiva.
+Este es mi portfolio personal como desarrollador web, donde muestro algunos de mis proyectos, habilidades y tecnologías con las que trabajo. El sitio está diseñado con un enfoque moderno y minimalista, optimizado para una navegación fluida y responsiva.
